@@ -25,11 +25,11 @@ flutter:
 
   assets:
      - images/
-     - images/
+
 
 
   fonts:
-    - family: Schyler
+    - family: Artifakt
       fonts:
-        - asset: fonts/
+        - asset: fonts/font_artifakt.ttf
 
