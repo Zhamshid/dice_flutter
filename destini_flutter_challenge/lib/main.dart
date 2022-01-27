@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'story_brain.dart';
+
+StoryBrain storyBrain = StoryBrain();
 
 void main() {
   runApp(MaterialApp(
@@ -16,6 +19,9 @@ class DestiniPage extends StatefulWidget {
 }
 
 class _DestiniPageState extends State<DestiniPage> {
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,16 +39,64 @@ class _DestiniPageState extends State<DestiniPage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Expanded(
-                  flex: 12,
-                  child: Center(
+                flex: 12,
+                child: Center(
+                  child: Text(
+                    storyBrain.getStory(),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 25,
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                  flex: 2,
+                  child: FlatButton(
+                    color: Colors.green,
+                    onPressed: () {
+                      setState(() {
+                        storyBrain.nextStory(1);
+                      });
+                    },
                     child: Text(
-                      'Here will be any Stories',
+                      storyBrain.getFirstChoice(),
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 25,
+                        fontSize: 20,
                       ),
                     ),
-                  ),)
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  )),
+              SizedBox(
+                width: 20,
+                height: 20,
+              ),
+              Visibility(
+                visible: storyBrain.buttonVisibility(),
+                child: Expanded(
+                    flex: 2,
+                    child: FlatButton(
+                      color: Colors.orange[700],
+                      onPressed: () {
+                        setState(() {
+                          storyBrain.nextStory(2);
+                        });
+                      },
+                      child: Text(
+                        storyBrain.getSecondChoice(),
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                        ),
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    )),
+              )
             ],
           ),
         ),
